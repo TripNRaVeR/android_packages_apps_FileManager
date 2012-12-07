@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ * Copyright (C) 2007-2011 OpenIntents.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="tripndroid.cmfilemanager"
+  android:versionCode="100"
+  android:versionName="1.0.0">
+
+  <original-package android:name="tripndroid.cmfilemanager" />
+	
+	    
+        <uses-sdk android:minSdkVersion="2"
+            android:targetSdkVersion="9" />
+        <!-- If targetSdkVersion is increased from 4 to 5 or higher, 
+        	the following needs to be adjusted:
+             * FileManagerActivity: onKeyDown(): New way how "back" key is handled.
+            NOTE: Tested on target=9, and it works both on Android 2.3 and Android 1.6. -->
+     
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	    
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
+    
+    <application android:icon="@drawable/ic_launcher" android:label="@string/app_name">
+    
+        <!-- aTrackDog metadata -->
+        <meta-data android:name="com.a0soft.gphone.aTrackDog.testVersion"
+           android:value="13" />
+           
+		<meta-data android:name="tripndroid.metadata.COMMENTS"
+                       android:value="@string/about_comments" />
+        <meta-data android:name="tripndroid.metadata.COPYRIGHT"
+                       android:value="@string/about_copyright" />
+        <meta-data android:name="tripndroid.metadata.AUTHORS"
+                       android:resource="@array/about_authors" />
+        <meta-data android:name="tripndroid.metadata.DOCUMENTERS"
+                       android:resource="@array/about_documenters" />
+        <meta-data android:name="tripndroid.metadata.TRANSLATORS"
+                       android:resource="@array/about_translators" />
+        <meta-data android:name="tripndroid.metadata.ARTISTS"
+                       android:resource="@array/about_artists" />
+        <meta-data android:name="tripndroid.metadata.WEBSITE_LABEL"
+                       android:value="@string/app_name" />
+        <meta-data android:name="tripndroid.metadata.WEBSITE_URL"
+                       android:value="@string/about_website_url" />
+        <meta-data android:name="tripndroid.metadata.LICENSE"
+                       android:resource="@raw/license_short" />
+        <meta-data android:name="tripndroid.metadata.EMAIL"
+                       android:value="@string/about_email" />
+                       
+        <activity android:name=".FileManagerActivity" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.CREATE_SHORTCUT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="tripndroid.action.PICK_FILE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="file" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="tripndroid.action.PICK_FILE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="tripndroid.action.PICK_DIRECTORY"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="file" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="tripndroid.action.PICK_DIRECTORY"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+		<action android:name="android.intent.action.GET_CONTENT" />
+		<data android:mimeType="*/*" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.OPENABLE" />
+            </intent-filter>
+
+		    <!-- Filter for a multi select feature -->
+   			<intent-filter>
+                <action android:name="tripndroid.action.MULTI_SELECT"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="file" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name=".PreferenceActivity" android:label="@string/settings" />
+        
+    <provider android:name=".FileManagerProvider" android:authorities="tripndroid.cmfilemanager"></provider>
+
+</application>
+</manifest> 
