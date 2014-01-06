@@ -62,7 +62,7 @@
         android:title="@string/pref_display_thumbs"
         android:summary="@string/pref_display_thumbs_summary"
         android:persistent="true"
-        android:defaultValue="false" />
+        android:defaultValue="true" />
 
     </PreferenceCategory>
 
